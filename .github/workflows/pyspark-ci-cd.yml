@@ -30,6 +30,12 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Add Spark to PATH
+      shell: cmd
+      run: |
+        echo "C:\spark\spark1\spark2\bin" >> $env:GITHUB_PATH
+        spark-submit --version
+
     - name: Run PySpark job
       shell: cmd
       run: |
