@@ -31,5 +31,6 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Run PySpark job
+      shell: cmd
       run: |
         python src/main.py
