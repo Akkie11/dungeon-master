@@ -33,4 +33,4 @@ jobs:
     - name: Run PySpark job
       shell: cmd
       run: |
-        python src/main.py
+        spark-submit --master local[*] src/main.py
