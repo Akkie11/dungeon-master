@@ -33,6 +33,7 @@ jobs:
     - name: Run PySpark job
       shell: cmd
       run: |
+        setx PATH "C:\spark\spark1\spark2\bin" /M
         spark-submit --master local[*] ^
         --conf "spark.executorEnv.PYTHONPATH=C:\Users\Akshay\OneDrive\Desktop\Pyspark_Project\sample_project\my_pyspark_project" ^
         --conf "spark.driverEnv.PYTHONPATH=C:\Users\Akshay\OneDrive\Desktop\Pyspark_Project\sample_project\my_pyspark_project" ^
