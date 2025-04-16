@@ -1,0 +1,35 @@
+name: PySpark Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install pytest pylint
+
+    - name: Run linting
+      run: |
+        pylint src/ --exit-zero
+
+  deploy:
+    needs: test
+    runs-on: self-hosted  # This makes it run on YOUR machine
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run PySpark job
+      run: |
+        python src/main.py
